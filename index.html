@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIAP • Dynamical Systems & Control | Turma 4ECS • 2025</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
+  <style>
+    :root {
+      --bg-dark: #050e0a;
+      --bg-card: #091a14;
+      --bg-surface: #122a21;
+      --border: #1b4033;
+      --text-main: #f3f4f6;
+      --text-muted: #94a3b8;
+      --primary: #10b981;
+      --secondary: #06b6d4;
+      --accent: #84cc16;
+      --radius: 12px;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'Fira Code', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+
+    [id] { scroll-margin-top: 95px; }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(10, 14, 23, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 10px 24px;
+    }
+
+    .header-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .header-row-1 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-row-1 .brand-fiap {
+      color: var(--primary);
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+
+    .header-row-2 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .turma-tag {
+      font-size: 0.82rem;
+      line-height: 1.3;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.12);
+      padding: 3px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .btn-repo-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      line-height: 1.3;
+      font-weight: 700;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 5px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .btn-repo-top:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.4);
+      filter: brightness(1.1);
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .hero-banner {
+      margin-bottom: 32px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .hero-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--primary);
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .metric-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-item {
+      background: var(--bg-surface);
+      color: var(--text-muted);
+      padding: 8px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      border: 1px solid var(--border);
+    }
+
+    .nav-item:hover, .nav-item:focus {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .cp-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+
+    .section-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--primary);
+      background: rgba(56, 189, 248, 0.1);
+      padding: 4px 12px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+
+    .problem-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .box-header {
+      background: rgba(255,255,255,0.03);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+    }
+
+    .copy-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .box-content {
+      padding: 20px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #e2e8f0;
+    }
+
+    .formula-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .formula-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .formula-latex {
+      font-size: 1.2rem;
+      color: #ffffff;
+      overflow-x: auto;
+      padding: 8px 0;
+    }
+
+    .symbolab-container {
+      margin-bottom: 28px;
+    }
+
+    .symbolab-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      transition: transform 0.2s ease;
+    }
+
+    .step-card:hover {
+      transform: translateX(4px);
+      border-color: var(--primary);
+    }
+
+    .step-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .step-content p {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+
+    .plot-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .plot-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+    }
+
+    .plot-img-container {
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      background: #00000022;
+    }
+
+    .plot-img-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-card);
+      padding: 32px 24px;
+      text-align: center;
+      margin-top: 60px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 8px 16px;
+      }
+      .header-row-1 {
+        font-size: 0.95rem;
+      }
+      .turma-tag {
+        font-size: 0.78rem;
+        padding: 2px 8px;
+      }
+      .btn-repo-top {
+        font-size: 0.78rem;
+        padding: 4px 10px;
+      }
+      body {
+        padding-top: 75px;
+      }
+      .container {
+        padding: 16px;
+      }
+      .cp-section {
+        padding: 20px 16px;
+      }
+      .section-title {
+        font-size: 1.25rem;
+      }
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="header-row-1">
+        <span class="brand-fiap">FIAP</span> • Engenharia da Computação
+      </div>
+      <div class="header-row-2">
+        <span class="turma-tag">TURMA 4ECS • 2025</span>
+        <a href="https://github.com/Guimemee/fiap-dynamical-systems-and-control" class="btn-repo-top" target="_blank" rel="noopener">
+          <span>Ver Repositório</span>
+          <span>↗</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="hero-banner">
+      <img src="card_technologies.svg" alt="FIAP • Dynamical Systems & Control - 4ECS 2025" />
+    </div>
+
+    <div class="metrics-grid">
+      
+        <div class="metric-card">
+          <div class="metric-label">CONTROLE PID</div>
+          <div class="metric-val">KP + KI/S + KD·S</div>
+          <div class="metric-sub">Sintonia Ziegler-Nichols e Cohen-Coon</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">MARGEM DE FASE</div>
+          <div class="metric-val">MF > 45°</div>
+          <div class="metric-sub">Estabilidade Robusta em Malha Fechada</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">OVEROVERSHOOT MÁXIMO</div>
+          <div class="metric-val">Mp < 5.0%</div>
+          <div class="metric-sub">Amortecimento Ótimo ζ = 0.707</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">TEMPO DE ACOMODAÇÃO</div>
+          <div class="metric-val">ts < 0.8 s</div>
+          <div class="metric-sub">Critério de 2% de Faixa de Tolerância</div>
+        </div>
+    </div>
+
+    <nav class="nav-tabs" aria-label="Navegação de Checkpoints">
+      <a href="#cp1" class="nav-item">CP1</a><a href="#cp2" class="nav-item">CP2</a><a href="#cp3" class="nav-item">CP3</a><a href="#cp4" class="nav-item">CP4</a><a href="#cp5" class="nav-item">CP5</a><a href="#cp6" class="nav-item">CP6</a>
+    </nav>
+
+    
+      <section id="cp1" class="cp-section">
+        <div class="section-badge">CHECKPOINT 01 • 4ECS 2025</div>
+        <h2 class="section-title">Modelagem Matemática de Sistemas Mecânicos e Elétricos com Laplace</h2>
+        
+        <div class="problem-box">
+          <div class="box-header">
+            <span>📋 ENUNCIADO ORIGINAL DA AVALIAÇÃO</span>
+            <button class="copy-btn" onclick="copyText('prob-cp1')">Copiar Enunciado</button>
+          </div>
+          <div id="prob-cp1" class="box-content">
+            <p>Obter a função de transferência G(s) de um braço robótico de precisão acionado por motor DC considerando inércia J, atrito viscoso b, resistência R e indutância L.</p>
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <div class="formula-title">📐 MODELAGEM MATEMÁTICA &amp; FORMULAÇÃO FORMAL</div>
+          <div class="formula-latex">$$G(s) = \frac{\Theta(s)}{V(s)} = \frac{K_t}{s \left[ (J s + b)(L s + R) + K_t K_e \right]}$$</div>
+        </div>
+
+        <div class="symbolab-container">
+          <h3 class="symbolab-title">💎 Resolução Algébrica Passo a Passo (Padrão Symbolab)</h3>
+          
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 1: Equação Elétrica da Armadura</span>
+              </div>
+              <div class="step-content">
+                <p>V(t) = R i(t) + L \frac{di(t)}{dt} + e_b(t), \text{ onde } e_b(t) = K_e \omega(t).</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 2: Equação Mecânica de Torque e Rotação</span>
+              </div>
+              <div class="step-content">
+                <p>T(t) = J \frac{d\omega(t)}{dt} + b \omega(t), \text{ onde } T(t) = K_t i(t).</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 3: Aplicação da Transformada de Laplace com Condições Iniciais Nulas</span>
+              </div>
+              <div class="step-content">
+                <p>V(s) = (Ls + R)I(s) + K_e s\Theta(s) \quad \text{e} \quad K_t I(s) = (Js^2 + bs)\Theta(s).</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 4: Eliminação da Corrente I(s)</span>
+              </div>
+              <div class="step-content">
+                <p>\frac{\Theta(s)}{V(s)} = \frac{K_t}{JL s^3 + (JR + bL)s^2 + (bR + K_t K_e)s}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 5: Conclusão Dinâmica</span>
+              </div>
+              <div class="step-content">
+                <p>Como L \ll R, o sistema simplifica para modelo de segunda ordem padrão com polos estáveis no semiplano esquerdo.</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="plot-box">
+          <div class="box-header">
+            <span>📊 GRÁFICO COMPUTACIONAL &amp; VISUALIZAÇÃO DE RESULTADOS</span>
+            <span class="plot-tag">Matplotlib • Alta Resolução</span>
+          </div>
+          <div class="plot-img-container">
+            <img src="03_Provas_Avaliativas_Checkpoints/Checkpoint_1_cp1/grafico_resolucao.png" alt="Gráfico Modelagem Matemática de Sistemas Mecânicos e Elétricos com Laplace" loading="lazy" />
+          </div>
+        </div>
+      </section>
+      <section id="cp2" class="cp-section">
+        <div class="section-badge">CHECKPOINT 02 • 4ECS 2025</div>
+        <h2 class="section-title">Funções de Transferência, Álgebra de Diagramas de Blocos e Malha Fechada</h2>
+        
+        <div class="problem-box">
+          <div class="box-header">
+            <span>📋 ENUNCIADO ORIGINAL DA AVALIAÇÃO</span>
+            <button class="copy-btn" onclick="copyText('prob-cp2')">Copiar Enunciado</button>
+          </div>
+          <div id="prob-cp2" class="box-content">
+            <p>Simplificar o diagrama de blocos multimalha com realimentação unitária e perturbações externas determinando a função de transferência de malha fechada e sensibilidade a ruídos.</p>
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <div class="formula-title">📐 MODELAGEM MATEMÁTICA &amp; FORMULAÇÃO FORMAL</div>
+          <div class="formula-latex">$$T(s) = \frac{C(s)}{R(s)} = \frac{G_c(s) G_p(s)}{1 + G_c(s) G_p(s) H(s)}, \quad S(s) = \frac{1}{1 + G_c(s) G_p(s)}$$</div>
+        </div>
+
+        <div class="symbolab-container">
+          <h3 class="symbolab-title">💎 Resolução Algébrica Passo a Passo (Padrão Symbolab)</h3>
+          
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 1: Identificação de Laços de Realimentação e Blocos em Cascata</span>
+              </div>
+              <div class="step-content">
+                <p>Produto direto de funções em série e divisão por (1 + GH) para laços internos.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 2: Movimentação de Pontos de Soma e Ramificação</span>
+              </div>
+              <div class="step-content">
+                <p>Equivalência matemática mantendo os sinais algébricos inalterados.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 3: Função de Transferência de Malha Fechada</span>
+              </div>
+              <div class="step-content">
+                <p>T(s) = \frac{100}{s^2 + 14,14s + 100} com \omega_n = 10 \text{ rad/s} e \zeta = 0,707.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 4: Função de Sensibilidade</span>
+              </div>
+              <div class="step-content">
+                <p>S(s) demonstra atenuação de perturbações de baixa frequência superior a 40 dB.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 5: Conclusão de Projeto</span>
+              </div>
+              <div class="step-content">
+                <p>Erro em regime permanente a entrada em degrau identicamente nulo e transitório suave.</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="plot-box">
+          <div class="box-header">
+            <span>📊 GRÁFICO COMPUTACIONAL &amp; VISUALIZAÇÃO DE RESULTADOS</span>
+            <span class="plot-tag">Matplotlib • Alta Resolução</span>
+          </div>
+          <div class="plot-img-container">
+            <img src="03_Provas_Avaliativas_Checkpoints/Checkpoint_2_cp2/grafico_resolucao.png" alt="Gráfico Funções de Transferência, Álgebra de Diagramas de Blocos e Malha Fechada" loading="lazy" />
+          </div>
+        </div>
+      </section>
+      <section id="cp3" class="cp-section">
+        <div class="section-badge">CHECKPOINT 03 • 4ECS 2025</div>
+        <h2 class="section-title">Análise de Estabilidade pelo Lugar Geométrico das Raízes (Root Locus)</h2>
+        
+        <div class="problem-box">
+          <div class="box-header">
+            <span>📋 ENUNCIADO ORIGINAL DA AVALIAÇÃO</span>
+            <button class="copy-btn" onclick="copyText('prob-cp3')">Copiar Enunciado</button>
+          </div>
+          <div id="prob-cp3" class="box-content">
+            <p>Traçar o Lugar das Raízes para o sistema G(s) = K / (s(s+2)(s+5)), determinando as assíntotas, ponto de partida/chegada no eixo real, ganho marginal K_crit e cruzamento com o eixo imaginário.</p>
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <div class="formula-title">📐 MODELAGEM MATEMÁTICA &amp; FORMULAÇÃO FORMAL</div>
+          <div class="formula-latex">$$1 + K G(s) = 0 \implies \sigma_a = \frac{\sum p_i - \sum z_i}{n - m} = \frac{-7}{3} \approx -2,33, \quad \theta_a = \pm 60^\circ, 180^\circ$$</div>
+        </div>
+
+        <div class="symbolab-container">
+          <h3 class="symbolab-title">💎 Resolução Algébrica Passo a Passo (Padrão Symbolab)</h3>
+          
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 1: Polos e Zeros em Malha Aberta</span>
+              </div>
+              <div class="step-content">
+                <p>Polos em s = 0, s = -2 e s = -5; sem zeros finitos (n = 3, m = 0).</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 2: Centroide das Assíntotas e Ângulos</span>
+              </div>
+              <div class="step-content">
+                <p>\sigma_a = \frac{0 - 2 - 5}{3} = -\frac{7}{3}; \quad \theta_a = \frac{(2k+1)180^\circ}{3} = \pm 60^\circ, 180^\circ.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 3: Ponto de Ruptura (Breakaway Point)</span>
+              </div>
+              <div class="step-content">
+                <p>\frac{dK}{ds} = 0 \implies 3s^2 + 14s + 10 = 0 \implies s \approx -0,88 (no segmento válido [0, -2]).</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 4: Cruzamento com o Eixo Imaginário (Critério de Routh-Hurwitz)</span>
+              </div>
+              <div class="step-content">
+                <p>Equação característica: s^3 + 7s^2 + 10s + K = 0. A estabilidade exige 0 < K < 70.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 5: Conclusão de Estabilidade</span>
+              </div>
+              <div class="step-content">
+                <p>Para K = 28, o coeficiente de amortecimento atinge \zeta = 0,5 com polos dominantes em s = -1 \pm j1,73.</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="plot-box">
+          <div class="box-header">
+            <span>📊 GRÁFICO COMPUTACIONAL &amp; VISUALIZAÇÃO DE RESULTADOS</span>
+            <span class="plot-tag">Matplotlib • Alta Resolução</span>
+          </div>
+          <div class="plot-img-container">
+            <img src="03_Provas_Avaliativas_Checkpoints/Checkpoint_3_cp3/grafico_resolucao.png" alt="Gráfico Análise de Estabilidade pelo Lugar Geométrico das Raízes (Root Locus)" loading="lazy" />
+          </div>
+        </div>
+      </section>
+      <section id="cp4" class="cp-section">
+        <div class="section-badge">CHECKPOINT 04 • 4ECS 2025</div>
+        <h2 class="section-title">Projeto e Sintonia de Controladores PID por Métodos Analíticos</h2>
+        
+        <div class="problem-box">
+          <div class="box-header">
+            <span>📋 ENUNCIADO ORIGINAL DA AVALIAÇÃO</span>
+            <button class="copy-btn" onclick="copyText('prob-cp4')">Copiar Enunciado</button>
+          </div>
+          <div id="prob-cp4" class="box-content">
+            <p>Dimensionar um controlador PID analítico usando o método de alocação de polos para atender aos requisitos de ultrapassagem percentual Mp <= 4.3% e tempo de acomodação ts <= 1.0 s.</p>
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <div class="formula-title">📐 MODELAGEM MATEMÁTICA &amp; FORMULAÇÃO FORMAL</div>
+          <div class="formula-latex">$$C(s) = K_p + \frac{K_i}{s} + K_d s = \frac{K_d s^2 + K_p s + K_i}{s}, \quad \zeta \ge 0,707, \quad \omega_n \ge 4 \text{ rad/s}$$</div>
+        </div>
+
+        <div class="symbolab-container">
+          <h3 class="symbolab-title">💎 Resolução Algébrica Passo a Passo (Padrão Symbolab)</h3>
+          
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 1: Requisitos de Desempenho no Domínio do Tempo</span>
+              </div>
+              <div class="step-content">
+                <p>M_p \le 4,3\% \implies \zeta \ge 0,707; \quad t_s(2\%) = \frac{4}{\zeta \omega_n} \le 1,0 \text{ s} \implies \omega_n \ge 5,66 \text{ rad/s}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 2: Polos Desejados de Malha Fechada</span>
+              </div>
+              <div class="step-content">
+                <p>s_{1,2} = -\zeta\omega_n \pm j\omega_n\sqrt{1-\zeta^2} = -4 \pm j4; polo rápido adicional em s_3 = -20.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 3: Polinômio Característico Desejado</span>
+              </div>
+              <div class="step-content">
+                <p>P_{desejado}(s) = (s^2 + 8s + 32)(s + 20) = s^3 + 28s^2 + 192s + 640.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 4: Igualdade Algébrica com a Equação de Malha Fechada</span>
+              </div>
+              <div class="step-content">
+                <p>K_p = 18,2; \quad K_i = 64,0; \quad K_d = 2,1.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 5: Conclusão de Controle</span>
+              </div>
+              <div class="step-content">
+                <p>Comportamento perfeitamente amortecido com rejeição instantânea de distúrbios de carga no motor.</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="plot-box">
+          <div class="box-header">
+            <span>📊 GRÁFICO COMPUTACIONAL &amp; VISUALIZAÇÃO DE RESULTADOS</span>
+            <span class="plot-tag">Matplotlib • Alta Resolução</span>
+          </div>
+          <div class="plot-img-container">
+            <img src="03_Provas_Avaliativas_Checkpoints/Checkpoint_4_cp4/grafico_resolucao.png" alt="Gráfico Projeto e Sintonia de Controladores PID por Métodos Analíticos" loading="lazy" />
+          </div>
+        </div>
+      </section>
+      <section id="cp5" class="cp-section">
+        <div class="section-badge">CHECKPOINT 05 • 4ECS 2025</div>
+        <h2 class="section-title">Resposta em Frequência e Projeto de Compensadores via Diagramas de Bode</h2>
+        
+        <div class="problem-box">
+          <div class="box-header">
+            <span>📋 ENUNCIADO ORIGINAL DA AVALIAÇÃO</span>
+            <button class="copy-btn" onclick="copyText('prob-cp5')">Copiar Enunciado</button>
+          </div>
+          <div id="prob-cp5" class="box-content">
+            <p>Dimensionar um compensador por avanço de fase (Lead Compensator) para garantir Margem de Fase MF >= 55 graus e Margem de Ganho MG >= 12 dB na esteira de montagem inteligente.</p>
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <div class="formula-title">📐 MODELAGEM MATEMÁTICA &amp; FORMULAÇÃO FORMAL</div>
+          <div class="formula-latex">$$G_c(s) = \frac{1 + \alpha T s}{1 + T s}, \quad \alpha = \frac{1 + \sin\phi_m}{1 - \sin\phi_m}, \quad \omega_m = \frac{1}{T\sqrt{\alpha}}$$</div>
+        </div>
+
+        <div class="symbolab-container">
+          <h3 class="symbolab-title">💎 Resolução Algébrica Passo a Passo (Padrão Symbolab)</h3>
+          
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 1: Medição das Margens do Sistema Não Compensado</span>
+              </div>
+              <div class="step-content">
+                <p>Margem de fase original MF = 22° na frequência de cruzamento de ganho \omega_{cg} = 4 \text{ rad/s}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 2: Ângulo de Avanço de Fase Requerido</span>
+              </div>
+              <div class="step-content">
+                <p>\phi_m = MF_{desejada} - MF_{atual} + \theta_{seguranca} = 55^\circ - 22^\circ + 8^\circ = 41^\circ.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 3: Cálculo do Fator Alfa</span>
+              </div>
+              <div class="step-content">
+                <p>\alpha = \frac{1 + \sin(41^\circ)}{1 - \sin(41^\circ)} = \frac{1,656}{0,344} \approx 4,81.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 4: Localização da Nova Frequência de Cruzamento</span>
+              </div>
+              <div class="step-content">
+                <p>Na frequência \omega_m, o compensador introduz ganho de 10 \log_{10}(\alpha) = 6,82 \text{ dB}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 5: Conclusão no Domínio da Frequência</span>
+              </div>
+              <div class="step-content">
+                <p>Margem de fase final atingiu 56,4° e estabilidade robusta assegurada frente a variações de carga mecânica.</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="plot-box">
+          <div class="box-header">
+            <span>📊 GRÁFICO COMPUTACIONAL &amp; VISUALIZAÇÃO DE RESULTADOS</span>
+            <span class="plot-tag">Matplotlib • Alta Resolução</span>
+          </div>
+          <div class="plot-img-container">
+            <img src="03_Provas_Avaliativas_Checkpoints/Checkpoint_5_cp5/grafico_resolucao.png" alt="Gráfico Resposta em Frequência e Projeto de Compensadores via Diagramas de Bode" loading="lazy" />
+          </div>
+        </div>
+      </section>
+      <section id="cp6" class="cp-section">
+        <div class="section-badge">CHECKPOINT 06 • 4ECS 2025</div>
+        <h2 class="section-title">Modelagem em Espaço de Estados, Controlabilidade e Observabilidade</h2>
+        
+        <div class="problem-box">
+          <div class="box-header">
+            <span>📋 ENUNCIADO ORIGINAL DA AVALIAÇÃO</span>
+            <button class="copy-btn" onclick="copyText('prob-cp6')">Copiar Enunciado</button>
+          </div>
+          <div id="prob-cp6" class="box-content">
+            <p>Representar o manipulador robótico em espaço de estados dx/dt = Ax + Bu, y = Cx e verificar as matrizes de controlabilidade de Kalman e observabilidade, projetando regulador LQR.</p>
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <div class="formula-title">📐 MODELAGEM MATEMÁTICA &amp; FORMULAÇÃO FORMAL</div>
+          <div class="formula-latex">$$\mathcal{C} = [B \quad AB \quad A^2B], \quad \text{rank}(\mathcal{C}) = n, \quad J = \int_0^\infty (x^T Q x + u^T R u) dt$$</div>
+        </div>
+
+        <div class="symbolab-container">
+          <h3 class="symbolab-title">💎 Resolução Algébrica Passo a Passo (Padrão Symbolab)</h3>
+          
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 1: Matrizes de Estado A, B, C, D</span>
+              </div>
+              <div class="step-content">
+                <p>Vetor de estados x = [\theta, \dot{\theta}, i]^T com dinâmica linearizada em torno do ponto de operação.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 2: Teste de Controlabilidade de Kalman</span>
+              </div>
+              <div class="step-content">
+                <p>Matriz \mathcal{C} com determinante não-nulo (\text{posto} = 3), garantindo que todos os estados são controláveis.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 3: Teste de Observabilidade</span>
+              </div>
+              <div class="step-content">
+                <p>Matriz \mathcal{O} = [C^T \quad A^T C^T \dots]^T com posto pleno permitindo reconstrução de estados por observador de Luenberger.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 4: Projeto do Regulador Linear Quadrático (LQR)</span>
+              </div>
+              <div class="step-content">
+                <p>Resolução da equação algébrica de Riccati (ARE) para matrizes de ponderação Q = \text{diag}(100, 10, 1) e R = 0,1.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 5: Conclusão do Desafio SPI</span>
+              </div>
+              <div class="step-content">
+                <p>Ganhos K calculados com controle ótimo de energia e posicionamento do robô da Metaindústria.</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="plot-box">
+          <div class="box-header">
+            <span>📊 GRÁFICO COMPUTACIONAL &amp; VISUALIZAÇÃO DE RESULTADOS</span>
+            <span class="plot-tag">Matplotlib • Alta Resolução</span>
+          </div>
+          <div class="plot-img-container">
+            <img src="03_Provas_Avaliativas_Checkpoints/Checkpoint_6_cp6/grafico_resolucao.png" alt="Gráfico Modelagem em Espaço de Estados, Controlabilidade e Observabilidade" loading="lazy" />
+          </div>
+        </div>
+      </section>
+  </main>
+
+  <footer>
+    <p><strong>FIAP • Faculdade de Informática e Administração Paulista</strong></p>
+    <p>Bacharelado em Engenharia da Computação • Turma 4ECS (2025) • Desafio: SPI / Metaindústria (Gêmeo Digital & Células Robóticas)</p>
+    <p>Acervo mantido por <a href="https://github.com/Guimemee" target="_blank" rel="noopener">Guilherme Macário da Silva (@Guimemee)</a></p>
+  </footer>
+
+  <script>
+    function copyText(elementId) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      const text = el.innerText || el.textContent;
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+          alert('Enunciado copiado com sucesso para a área de transferência!');
+        }).catch(err => fallbackCopy(text));
+      } else {
+        fallbackCopy(text);
+      }
+
+      function fallbackCopy(val) {
+        const ta = document.createElement('textarea');
+        ta.value = val;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        alert('Enunciado copiado!');
+      }
+    }
+  </script>
+</body>
+</html>

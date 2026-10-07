@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad_fiap_dynamical_systems_and_control" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050e0a" />
+      <stop offset="50%" stop-color="#091a14" />
+      <stop offset="100%" stop-color="#050e0a" />
+    </linearGradient>
+    <linearGradient id="pGrad_fiap_dynamical_systems_and_control" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+    <pattern id="grid_fiap_dynamical_systems_and_control" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1b4033" stroke-width="0.8" stroke-opacity="0.4" />
+      <circle cx="40" cy="40" r="1.5" fill="#10b981" fill-opacity="0.25" />
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="520" fill="url(#bgGrad_fiap_dynamical_systems_and_control)" rx="16" />
+  <rect width="1200" height="520" fill="url(#grid_fiap_dynamical_systems_and_control)" rx="16" />
+  <rect width="1196" height="516" x="2" y="2" fill="none" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.35" rx="14" />
+
+  <path d="M 40 40 L 280 40 L 310 70 L 600 70 L 620 50 L 1160 50" fill="none" stroke="#06b6d4" stroke-width="1.5" stroke-opacity="0.3" />
+  <circle cx="280" cy="40" r="3.5" fill="#06b6d4" />
+  <circle cx="600" cy="70" r="3.5" fill="#10b981" />
+  <circle cx="1160" cy="50" r="4" fill="#84cc16" />
+
+  <g transform="translate(60, 85)">
+    <rect x="0" y="0" width="80" height="28" rx="6" fill="#122a21" stroke="#10b981" stroke-width="1.2" />
+    <text x="40" y="19" fill="#10b981" font-family="-apple-system, sans-serif" font-size="13" font-weight="800" text-anchor="middle" letter-spacing="1">FIAP</text>
+    <rect x="92" y="0" width="160" height="28" rx="6" fill="#122a21" stroke="#1b4033" stroke-width="1.2" />
+    <text x="172" y="19" fill="#94a3b8" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" text-anchor="middle">4ECS • 2025</text>
+    <rect x="264" y="0" width="220" height="28" rx="6" fill="#122a21" stroke="#84cc16" stroke-width="1" />
+    <text x="374" y="19" fill="#84cc16" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" text-anchor="middle">SPI / Metaindústria (Gêmeo Digit</text>
+  </g>
+
+  <g transform="translate(60, 160)">
+    <text x="0" y="42" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="32" font-weight="900" letter-spacing="-0.5">DYNAMICAL SYSTEMS &amp; CONTROL</text>
+    <text x="0" y="80" fill="#84cc16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="500">Modelagem Matemática de Sistemas Físicos, Transformada de Laplace, Lugar da</text>
+    <text x="0" y="105" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13">Bacharelado em Engenharia da Computação • Acervo Integral de Engenharia</text>
+  </g>
+
+  
+    <g transform="translate(560, 120)">
+      <rect width="270" height="76" rx="10" fill="#122a21" stroke="#1b4033" stroke-width="1.2" />
+      <text x="16" y="24" fill="#84cc16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" letter-spacing="1">CONTROLE PID</text>
+      <text x="16" y="48" fill="#ffffff" font-family="'Fira Code', monospace" font-size="16" font-weight="800">KP + KI/S + KD·S</text>
+      <text x="16" y="66" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">Sintonia Ziegler-Nichols e Cohen-Coon</text>
+    </g>
+    <g transform="translate(850, 120)">
+      <rect width="270" height="76" rx="10" fill="#122a21" stroke="#1b4033" stroke-width="1.2" />
+      <text x="16" y="24" fill="#84cc16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" letter-spacing="1">MARGEM DE FASE</text>
+      <text x="16" y="48" fill="#ffffff" font-family="'Fira Code', monospace" font-size="16" font-weight="800">MF &gt; 45°</text>
+      <text x="16" y="66" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">Estabilidade Robusta em Malha Fechada</text>
+    </g>
+    <g transform="translate(560, 210)">
+      <rect width="270" height="76" rx="10" fill="#122a21" stroke="#1b4033" stroke-width="1.2" />
+      <text x="16" y="24" fill="#84cc16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" letter-spacing="1">OVEROVERSHOOT MÁXIMO</text>
+      <text x="16" y="48" fill="#ffffff" font-family="'Fira Code', monospace" font-size="16" font-weight="800">Mp &lt; 5.0%</text>
+      <text x="16" y="66" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">Amortecimento Ótimo ζ = 0.707</text>
+    </g>
+    <g transform="translate(850, 210)">
+      <rect width="270" height="76" rx="10" fill="#122a21" stroke="#1b4033" stroke-width="1.2" />
+      <text x="16" y="24" fill="#84cc16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" letter-spacing="1">TEMPO DE ACOMODAÇÃO</text>
+      <text x="16" y="48" fill="#ffffff" font-family="'Fira Code', monospace" font-size="16" font-weight="800">ts &lt; 0.8 s</text>
+      <text x="16" y="66" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">Critério de 2% de Faixa de Tolerância</text>
+    </g>
+
+  <g transform="translate(60, 420)">
+    <text x="0" y="0" fill="#94a3b8" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="1">TECNOLOGIAS &amp; METODOLOGIAS DOMINADAS:</text>
+  </g>
+  
+    <g transform="translate(60, 450)">
+      <rect width="236.5" height="28" rx="14" fill="#122a21" stroke="#10b981" stroke-width="1" />
+      <text x="118.25" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" text-anchor="middle">📐 Transformada de Laplace</text>
+    </g>
+    <g transform="translate(308.5, 450)">
+      <rect width="245.0" height="28" rx="14" fill="#122a21" stroke="#10b981" stroke-width="1" />
+      <text x="122.5" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" text-anchor="middle">🎯 Controle PID Sintonizado</text>
+    </g>
+    <g transform="translate(565.5, 450)">
+      <rect width="287.5" height="28" rx="14" fill="#122a21" stroke="#10b981" stroke-width="1" />
+      <text x="143.75" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" text-anchor="middle">📈 Lugar das Raízes (Root Locus)</text>
+    </g>
+    <g transform="translate(865.0, 450)">
+      <rect width="177.0" height="28" rx="14" fill="#122a21" stroke="#10b981" stroke-width="1" />
+      <text x="88.5" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" text-anchor="middle">📊 Diagrama de Bode</text>
+    </g>
+    <g transform="translate(1054.0, 450)">
+      <rect width="194.0" height="28" rx="14" fill="#122a21" stroke="#10b981" stroke-width="1" />
+      <text x="97.0" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" text-anchor="middle">⚙️ Espaço de Estados</text>
+    </g>
+    <g transform="translate(1260.0, 450)">
+      <rect width="143.0" height="28" rx="14" fill="#122a21" stroke="#10b981" stroke-width="1" />
+      <text x="71.5" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" text-anchor="middle">🤖 Robótica SPI</text>
+    </g>
+</svg>

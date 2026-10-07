@@ -1,0 +1,7 @@
+FIAP • Engenharia da Computação
+Disciplina: Dynamical Systems & Control
+Turma 4ECS • Ano 2025
+Checkpoint 02: Funções de Transferência, Álgebra de Diagramas de Blocos e Malha Fechada
+
+ENUNCIADO ORIGINAL:
+Simplificar o diagrama de blocos multimalha com realimentação unitária e perturbações externas determinando a função de transferência de malha fechada e sensibilidade a ruídos.

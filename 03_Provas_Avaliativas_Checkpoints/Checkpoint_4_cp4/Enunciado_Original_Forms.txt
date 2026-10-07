@@ -1,0 +1,7 @@
+FIAP • Engenharia da Computação
+Disciplina: Dynamical Systems & Control
+Turma 4ECS • Ano 2025
+Checkpoint 04: Projeto e Sintonia de Controladores PID por Métodos Analíticos
+
+ENUNCIADO ORIGINAL:
+Dimensionar um controlador PID analítico usando o método de alocação de polos para atender aos requisitos de ultrapassagem percentual Mp <= 4.3% e tempo de acomodação ts <= 1.0 s.

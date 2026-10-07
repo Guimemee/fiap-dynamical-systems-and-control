@@ -1,0 +1,7 @@
+FIAP • Engenharia da Computação
+Disciplina: Dynamical Systems & Control
+Turma 4ECS • Ano 2025
+Checkpoint 01: Modelagem Matemática de Sistemas Mecânicos e Elétricos com Laplace
+
+ENUNCIADO ORIGINAL:
+Obter a função de transferência G(s) de um braço robótico de precisão acionado por motor DC considerando inércia J, atrito viscoso b, resistência R e indutância L.

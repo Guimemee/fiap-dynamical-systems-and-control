@@ -1,0 +1,7 @@
+FIAP • Engenharia da Computação
+Disciplina: Dynamical Systems & Control
+Turma 4ECS • Ano 2025
+Checkpoint 03: Análise de Estabilidade pelo Lugar Geométrico das Raízes (Root Locus)
+
+ENUNCIADO ORIGINAL:
+Traçar o Lugar das Raízes para o sistema G(s) = K / (s(s+2)(s+5)), determinando as assíntotas, ponto de partida/chegada no eixo real, ganho marginal K_crit e cruzamento com o eixo imaginário.

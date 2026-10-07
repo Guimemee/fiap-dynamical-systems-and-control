@@ -1,0 +1,7 @@
+FIAP • Engenharia da Computação
+Disciplina: Dynamical Systems & Control
+Turma 4ECS • Ano 2025
+Checkpoint 06: Modelagem em Espaço de Estados, Controlabilidade e Observabilidade
+
+ENUNCIADO ORIGINAL:
+Representar o manipulador robótico em espaço de estados dx/dt = Ax + Bu, y = Cx e verificar as matrizes de controlabilidade de Kalman e observabilidade, projetando regulador LQR.

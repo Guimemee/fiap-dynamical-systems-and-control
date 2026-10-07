@@ -1,0 +1,7 @@
+FIAP • Engenharia da Computação
+Disciplina: Dynamical Systems & Control
+Turma 4ECS • Ano 2025
+Checkpoint 05: Resposta em Frequência e Projeto de Compensadores via Diagramas de Bode
+
+ENUNCIADO ORIGINAL:
+Dimensionar um compensador por avanço de fase (Lead Compensator) para garantir Margem de Fase MF >= 55 graus e Margem de Ganho MG >= 12 dB na esteira de montagem inteligente.
